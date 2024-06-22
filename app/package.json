@@ -1,14 +1,14 @@
 {
-    "name": "fullcycle-node-app",
-    "version": "1.0.0",
-    "description": "Full Cycle Rocks!",
-    "main": "index.js",
-    "scripts": {
-      "start": "node index.js"
-    },
-    "dependencies": {
-      "express": "^4.17.1",
-      "mysql": "^2.18.1"
-    }
+  "name": "fullcycle-node-app",
+  "version": "1.0.0",
+  "description": "Full Cycle Rocks!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "dotenv": "^10.0.0"
   }
-  
+}

@@ -1,5 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express();
 const port = 3000;
 
@@ -13,6 +15,7 @@ const config = {
 const connection = mysql.createConnection(config);
 
 connection.connect((err) => {
+  console.log(config.host);
   if (err) throw err;
   console.log('Connected to MySQL');
 });
