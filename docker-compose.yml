@@ -2,7 +2,9 @@ version: "3.8"
 
 services:
   app:
-    image: node:14
+    build:
+      context: ./app
+      dockerfile: Dockerfile
     container_name: app
     working_dir: /app
     volumes:
@@ -12,7 +14,6 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DB: fullcycle
-    command: sh -c "npm install && npm start"
     networks:
       - app-network
 
