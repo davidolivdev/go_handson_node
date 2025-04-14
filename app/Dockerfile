@@ -1,16 +1,13 @@
 FROM node:14
 
-RUN apt-get update && apt-get install -y wget \
-    && wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \
-    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz \
-    && rm dockerize-linux-amd64-v0.6.1.tar.gz
-
 WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
 
 COPY . .
 
-RUN npm install
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 \
+  CMD curl -f http://localhost:3000/ || exit 1
 
-EXPOSE 3000
-
-CMD ["dockerize", "-wait", "tcp://db:3306", "-timeout", "20s", "npm", "start"]
+CMD ["sh", "-c", "while ! nc -z db 3306; do sleep 2; done && npm start"]
